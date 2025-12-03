@@ -57,7 +57,7 @@ export default function Header() {
       </div>
       {isExpand && (
         <div className="max-w-[calc(100%-15px)] h-fit left-1/2 -translate-x-1/2 block lg:hidden fixed w-full z-30 top-3">
-          <Middle active={active} />
+          <Middle active={active} onClick={() => setIsExpand(false)} />
         </div>
       )}
     </div>

@@ -8,9 +8,9 @@ import clsx from "clsx";
 
 interface Props {
   active: boolean;
+  onClick?: (id: string) => void;
 }
 
-// 🔹 NAV ITEMS ARRAY
 const navItems = [
   { label: "Who we are", id: "who-we-are" },
   { label: "Services", id: "services" },
@@ -20,7 +20,7 @@ const navItems = [
   { label: "Contact", id: "contact" },
 ];
 
-export default function Middle({ active }: Props) {
+export default function Middle({ active, onClick }: Props) {
   const itemClass =
     "cursor-pointer justify-center h-[50px] lg:h-fit w-full lg:w-fit whitespace-nowrap bg-transparent hover:bg-neutral-900 dark:hover:bg-neutral-900/70 rounded-full transition-all px-4 py-1 transition-colors duration-500 ease-in-out hover:text-white";
 
@@ -41,7 +41,11 @@ export default function Middle({ active }: Props) {
         {navItems.map(({ label, id }) => (
           <NavigationMenuItem key={id} className="w-full lg:w-fit">
             <NavigationMenuLink asChild className={itemClass}>
-              <a href={`#${id}`} className="px-8 lg:px-4">
+              <a
+                href={`#${id}`}
+                className="px-8 lg:px-4"
+                onClick={() => onClick?.(id)}
+              >
                 {label}
               </a>
             </NavigationMenuLink>

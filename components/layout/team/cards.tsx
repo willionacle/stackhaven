@@ -65,7 +65,7 @@ export default function Cards() {
           <CardContent className="p-0">
             <img src={item.avatar} className="w-full" />
           </CardContent>
-          <CardFooter className="absolute bottom-0  w-full flex  h-[150px] md:h-[120px] p-4  duration-600 justify-between backdrop-blur-sm group-hover:p-7 group-hover:h-full group-hover:bg-linear-to-b from-white to-white/50 dark:from-neutral-800/90 dark:to-neutral-950/90 z-10  flex-col items-start">
+          <CardFooter className="absolute bottom-0  w-full flex  h-[150px] md:h-[120px] p-4  duration-600 justify-between lg:backdrop-blur-sm group-hover:p-7 group-hover:h-full group-hover:bg-linear-to-b from-white to-white/50 dark:from-neutral-800/90 dark:to-neutral-950/90 z-10  flex-col items-start">
             <div>
               <h1 className="text-white text-sm md:text-md lg:text-xl group-hover:text-neutral-900 dark:group-hover:text-white  font-semibold">
                 {item.name}
