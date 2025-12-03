@@ -6,8 +6,10 @@ import { Button } from "./ui/button";
 
 export default function Hamburger({
   onClick,
+  isExpand,
 }: {
   onClick?: (dat: boolean) => void;
+  isExpand: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -18,6 +20,10 @@ export default function Hamburger({
   useEffect(() => {
     onClick?.(open);
   }, [open]);
+
+  useEffect(() => {
+    if (!isExpand) setOpen(false);
+  }, [isExpand]);
 
   return (
     // <button

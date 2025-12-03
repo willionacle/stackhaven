@@ -51,7 +51,7 @@ export default function Header() {
           <Middle active={active} />
         </div>
         <div className="flex items-center gap-4">
-          <Hamburger onClick={setIsExpand} />
+          <Hamburger onClick={setIsExpand} isExpand={isExpand} />
           <ModeToggle />
         </div>
       </div>
