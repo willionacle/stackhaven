@@ -8,7 +8,7 @@ export default function TabMenu({
   onValueChange: (data: string) => void;
 }) {
   const activeClass =
-    "data-[state=active]:bg-neutral-900 dark:data-[state=active]:bg-white lg:min-w-[100px] dark:data-[state=active]:text-black! data-[state=active]:text-white transition-all duration-500 lg:px-10 dark:hover:text-white!";
+    "data-[state=active]:bg-neutral-900 dark:data-[state=active]:bg-white min-w-[106px] lg:min-w-[100px] dark:data-[state=active]:text-black! data-[state=active]:text-white transition-all duration-500 lg:px-10 dark:hover:text-white!";
 
   return (
     <Tabs
@@ -16,7 +16,7 @@ export default function TabMenu({
       className="mx-auto w-fit my-10"
       onValueChange={onValueChange}
     >
-      <TabsList className="bg-transparent">
+      <TabsList className="bg-transparent flex-wrap">
         <TabsTrigger className={activeClass} value="all">
           All
         </TabsTrigger>

@@ -29,12 +29,12 @@ export default function Middle({ active, onClick }: Props) {
       className={clsx(
         "lg:min-w-fit bg-white-800/10 dark:border border-neutral-800/50 transition-all duration-300 rounded-md lg:rounded-full p-1 backdrop-blur-lg absolute left-1/2 -translate-x-1/2 lg:-translate-y-1/2 top-[52px] lg:top-1/2",
         active &&
-          "h-[calc(100dvh-65px)] lg:h-auto bg-white/90 lg:bg-white/0 border border-neutral-100 lg:border-neutral-100/0 dark:bg-neutral-800/50 lg:dark:bg-neutral-800/0 dark:border-neutral-800/0 w-[calc(100vw-35px)] lg:w-fit lg:max-w-[calc(100%-15px)] backdrop-blur-md lg:backdrop-blur-none "
+          "h-[calc(100dvh-70px)] lg:h-auto bg-white/90 lg:bg-white/0 border border-neutral-100 lg:border-neutral-100/0 dark:bg-neutral-800/50 lg:dark:bg-neutral-800/0 dark:border-neutral-800/0 w-[calc(100vw-35px)] lg:w-fit lg:max-w-[calc(100%-15px)] backdrop-blur-md lg:backdrop-blur-none "
       )}
     >
       <NavigationMenuList
         className={clsx(
-          "h-[calc(100dvh-65px)] lg:mt-auto lg:h-auto flex-col justify-start lg:flex-row w-[calc(100vw-35px)] lg:w-fit",
+          "h-[calc(100dvh-70px)] lg:mt-auto lg:h-auto flex-col justify-start lg:flex-row w-[calc(100vw-35px)] lg:w-fit",
           active ? "mt-7" : "mt-4"
         )}
       >

@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import GlowingTracer from "@/components/glow-tracer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -6,6 +7,8 @@ import { Github, Linkedin } from "lucide-react";
 import { IconBrandBehance } from "@tabler/icons-react";
 
 export default function Cards() {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
   const teamMembers = [
     {
       name: "Ivan Hendrick Navarro",
@@ -25,7 +28,7 @@ export default function Cards() {
       socials: {
         linkedin: "https://www.linkedin.com/in/jjmrbldz",
         github: "https://github.com/jjmrbldz",
-        behance: "https://www.behance.net/jejobaldoza",
+        behance: "https://www.linkedin.com/in/jjmrbldz",
       },
     },
     {
@@ -54,58 +57,106 @@ export default function Cards() {
     window.open(link, "_blank");
   };
 
+  const toggleCard = (idx: number) => {
+    setActiveCard(activeCard === idx ? null : idx);
+  };
+
+  useEffect(() => {
+    const close = () => setActiveCard(null);
+    window.addEventListener("scroll", close);
+    return () => window.removeEventListener("scroll", close);
+  }, []);
+
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-3 relative">
-      {teamMembers.map((item, idx) => (
-        <Card
-          key={idx}
-          className="p-0 overflow-hidden relative border-0 rounded-none cursor-pointer group transition-all duration-600"
-        >
-          <GlowingTracer />
-          <CardContent className="p-0">
-            <img src={item.avatar} className="w-full" />
-          </CardContent>
-          <CardFooter className="absolute bottom-0  w-full flex  h-[150px] md:h-[120px] p-4  duration-600 justify-between lg:backdrop-blur-sm group-hover:p-7 group-hover:h-full group-hover:bg-linear-to-b from-white to-white/50 dark:from-neutral-800/90 dark:to-neutral-950/90 z-10  flex-col items-start">
-            <div>
-              <h1 className="text-white text-sm md:text-md lg:text-xl group-hover:text-neutral-900 dark:group-hover:text-white  font-semibold">
-                {item.name}
-              </h1>
-              <p className="text-white/45 text-xs mb-3 group-hover:text-neutral-900 dark:group-hover:text-neutral-400">
-                {item.role}
-              </p>
-              <div className="flex flex-nowrap gap-0 text-xs ">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => openLink(item.socials["linkedin"])}
-                  className=""
+      {teamMembers.map((item, idx) => {
+        const isActive = activeCard === idx;
+
+        return (
+          <Card
+            key={idx}
+            onClick={() => toggleCard(idx)}
+            className={`p-0 overflow-hidden relative border-0 rounded-none cursor-pointer group transition-all duration-600 ${
+              isActive ? "force-hover" : ""
+            }`}
+          >
+            <GlowingTracer />
+            <CardContent className="p-0">
+              <img src={item.avatar} className="w-full" />
+            </CardContent>
+            <CardFooter
+              className={`absolute bottom-0 w-full flex h-[150px] md:h-[120px] p-4 duration-600 justify-between lg:backdrop-blur-sm flex-col items-start z-10 group-hover:p-7 group-hover:h-full group-hover:bg-linear-to-b from-white to-white/50 dark:from-neutral-800/90 dark:to-neutral-950/90 ${
+                isActive
+                  ? "p-4 h-full bg-linear-to-b from-white to-white/50 dark:from-neutral-800/90 dark:to-neutral-950/90"
+                  : ""
+              }`}
+            >
+              <div>
+                <h1
+                  className={`text-white text-sm md:text-md lg:text-xl font-semibold group-hover:text-neutral-900 dark:group-hover:text-white ${
+                    isActive ? "text-neutral-900! dark:text-white!" : ""
+                  }`}
                 >
-                  <Linkedin className="text-white group-hover:text-neutral-600 dark:group-hover:text-white  w-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => openLink(item.socials["github"])}
+                  {item.name}
+                </h1>
+                <p
+                  className={`text-white/45 text-xs mb-3 group-hover:text-neutral-900 dark:group-hover:text-neutral-400 ${
+                    isActive ? "text-neutral-900! dark:text-neutral-400!" : ""
+                  }`}
                 >
-                  <Github className="text-white group-hover:text-neutral-600 dark:group-hover:text-white w-4" />
-                </Button>
-                {item.socials["behance"] && (
+                  {item.role}
+                </p>
+                <div className="flex flex-nowrap gap-0 text-xs">
                   <Button
                     size="icon"
                     variant="ghost"
-                    onClick={() => openLink(item?.socials?.behance as string)}
+                    onClick={() => openLink(item.socials["linkedin"])}
                   >
-                    <IconBrandBehance className="text-white group-hover:text-neutral-600 dark:group-hover:text-white text-lg" />
+                    <Linkedin
+                      className={`text-white group-hover:text-neutral-600 dark:group-hover:text-white w-4 ${
+                        isActive ? "text-neutral-600! dark:text-white!" : ""
+                      }`}
+                    />
                   </Button>
-                )}
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => openLink(item.socials["github"])}
+                  >
+                    <Github
+                      className={`text-white group-hover:text-neutral-600 dark:group-hover:text-white w-4 ${
+                        isActive ? "text-neutral-600! dark:text-white!" : ""
+                      }`}
+                    />
+                  </Button>
+                  {item.socials["behance"] && (
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() =>
+                        openLink(item.socials["behance"] as string)
+                      }
+                    >
+                      <IconBrandBehance
+                        className={`text-white group-hover:text-neutral-600 dark:group-hover:text-white text-lg ${
+                          isActive ? "text-neutral-600! dark:text-white!" : ""
+                        }`}
+                      />
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
-            <span className="opacity-0 blur-3xl text-sm duration-600  group-hover:blur-none group-hover:opacity-100">
-              {item.bio}
-            </span>
-          </CardFooter>
-        </Card>
-      ))}
+              <span
+                className={`opacity-0 blur-3xl text-sm duration-600 group-hover:blur-none group-hover:opacity-100 ${
+                  isActive ? "text-[10px] lg:text-sm opacity-100 blur-none" : ""
+                }`}
+              >
+                {item.bio}
+              </span>
+            </CardFooter>
+          </Card>
+        );
+      })}
     </div>
   );
 }

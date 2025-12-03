@@ -13,10 +13,10 @@ export default function Team() {
           products.
         </>
       }
-      className="max-w-full! relative"
+      className="max-w-[calc(100vw-35px)] lg:max-w-full! relative"
       id="team"
     >
-      <div className="max-w-full lg:max-w-7xl mx-auto">
+      <div className="max-w-[calc(100vw-35px)] lg:max-w-7xl mx-auto">
         <Cards />
       </div>
       <Bg />
